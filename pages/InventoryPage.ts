@@ -10,4 +10,9 @@ export class InventoryPage {
   async goToCart() {
     await this.page.click('.shopping_cart_link');
   }
+  
+  async removeFirstItem() {
+    await this.page.click('.inventory_item button');
+  }  
+
 }
