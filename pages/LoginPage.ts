@@ -18,6 +18,10 @@ export class LoginPage {
     await this.page.click(this.loginButton);
   }
 
+  async fillUserName(username: string) {
+    await this.page.fill(this.usernameInput, username);
+  }
+
   async getErrorText() {
     return await this.page.locator(this.errorMessage).textContent();
   }

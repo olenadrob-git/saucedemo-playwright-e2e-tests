@@ -12,9 +12,10 @@ test.describe('Cart functionality', () => {
     await login.login('standard_user', 'secret_sauce');
 
     await inventory.addFirstItemToCart();
+    await inventory.addSecondItemToCart();
 
     const badge = page.locator('.shopping_cart_badge');
-    await expect(badge).toHaveText('1');
+    await expect(badge).toHaveText('2');
   });
 
   test('remove item from cart', async ({ page }) => {
