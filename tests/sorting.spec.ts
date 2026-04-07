@@ -7,13 +7,13 @@ test('sort products by price low to high', async ({ page }) => {
   await login.goto();
   await login.login('standard_user', 'secret_sauce');
 
-  // 🔽 вибрати сортування
+  // Select sorting
   await page.selectOption('.product_sort_container', 'lohi');
 
-  // 📦 отримати всі ціни
+  // Get all prices
   const prices = await page.locator('.inventory_item_price').allTextContents();
 
-  // 💰 перетворити "$29.99" → 29.99
+  // Change "$29.99" → 29.99
   const numericPrices = prices.map(p => parseFloat(p.replace('$', '')));
 
   // 📊 копія масиву і сортування
@@ -29,19 +29,19 @@ test('sort products by price high to low', async ({ page }) => {
   await login.goto();
   await login.login('standard_user', 'secret_sauce');
 
-  // 🔽 вибрати сортування
+  // Select sorting
   await page.selectOption('.product_sort_container', 'hilo');
 
-  // 📦 отримати всі ціни
+  // Get all prices
   const prices = await page.locator('.inventory_item_price').allTextContents();
 
-  // 💰 перетворити "$29.99" → 29.99
+  // Change "$29.99" → 29.99
   const numericPrices = prices.map(p => parseFloat(p.replace('$', '')));
 
-  // 📊 копія масиву і сортування
+  // copy array and sort
   const sorted = [...numericPrices].sort((a, b) => b - a);
 
-  // ✅ перевірка
+  //Check
   expect(numericPrices).toEqual(sorted);
 });
 
@@ -52,16 +52,15 @@ test('sort products by name from A to Z', async ({ page }) => {
   await login.goto();
   await login.login('standard_user', 'secret_sauce');
 
-  // 🔽 вибрати сортування
+  
   await page.selectOption('.product_sort_container', 'az');
 
-  // 📦 отримати всі назви
+  
   const names = await page.locator('.inventory_item_name').allTextContents();
 
-    // 📊 копія масиву і сортування
-  const sorted = [...names].sort((a, b) => a - b);
+    const sorted = [...names].sort((a, b) => a - b);
 
-  // ✅ перевірка
+  // Check
   expect(names).toEqual(sorted);
 });
 
@@ -71,15 +70,12 @@ test('sort products by name from Z to A', async ({ page }) => {
   await login.goto();
   await login.login('standard_user', 'secret_sauce');
 
-  // 🔽 вибрати сортування
-  await page.selectOption('.product_sort_container', 'za');
+   await page.selectOption('.product_sort_container', 'za');
 
-  // 📦 отримати всі назви
-  const names = await page.locator('.inventory_item_name').allTextContents();
+   const names = await page.locator('.inventory_item_name').allTextContents();
+   
+    const sorted = [...names].sort((a, b) => b - a);
 
-    // 📊 копія масиву і сортування
-  const sorted = [...names].sort((a, b) => b - a);
-
-  // ✅ перевірка
+  // Check
   expect(names).toEqual(sorted);
 });
