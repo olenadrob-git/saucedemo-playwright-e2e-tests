@@ -14,10 +14,10 @@ test('sort products by price low to high', async ({ page }) => {
   // Change "$29.99" → 29.99
   const numericPrices = prices.map(p => parseFloat(p.replace('$', '')));
 
-  // 📊 копія масиву і сортування
+  // Copy massive and sort
   const sorted = [...numericPrices].sort((a, b) => a - b);
 
-  // ✅ перевірка
+  //Check
   expect(numericPrices).toEqual(sorted);
 });
 
