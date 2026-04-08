@@ -1,11 +1,9 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../fixtures/auth.fixture';
 import { LoginPage } from '../pages/LoginPage';
 
 test('sort products by price low to high', async ({ page }) => {
   const login = new LoginPage(page);
 
-  await login.goto();
-  await login.login('standard_user', 'secret_sauce');
 
   // Select sorting
   await page.selectOption('.product_sort_container', 'lohi');
@@ -26,8 +24,6 @@ test('sort products by price low to high', async ({ page }) => {
 test('sort products by price high to low', async ({ page }) => {
   const login = new LoginPage(page);
 
-  await login.goto();
-  await login.login('standard_user', 'secret_sauce');
 
   // Select sorting
   await page.selectOption('.product_sort_container', 'hilo');
@@ -49,9 +45,6 @@ test('sort products by price high to low', async ({ page }) => {
 test('sort products by name from A to Z', async ({ page }) => {
   const login = new LoginPage(page);
 
-  await login.goto();
-  await login.login('standard_user', 'secret_sauce');
-
   
   await page.selectOption('.product_sort_container', 'az');
 
@@ -67,9 +60,6 @@ test('sort products by name from A to Z', async ({ page }) => {
 test('sort products by name from Z to A', async ({ page }) => {
   const login = new LoginPage(page);
 
-  await login.goto();
-  await login.login('standard_user', 'secret_sauce');
-
    await page.selectOption('.product_sort_container', 'za');
 
    const names = await page.locator('.inventory_item_name').allTextContents();
@@ -78,4 +68,8 @@ test('sort products by name from Z to A', async ({ page }) => {
 
   // Check
   expect(names).toEqual(sorted);
+});
+
+test('debug user', async ({ page, user }) => {
+  console.log('USER:', user.username);
 });

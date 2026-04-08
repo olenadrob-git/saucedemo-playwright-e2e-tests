@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../fixtures/auth.fixture';
 import { LoginPage } from '../pages/LoginPage';
 import { InventoryPage } from '../pages/InventoryPage';
 import { CartPage } from '../pages/CartPage';
@@ -9,9 +9,6 @@ test('successful checkout flow', async ({ page }) => {
   const inventory = new InventoryPage(page);
   const cart = new CartPage(page);
   const checkout = new CheckoutPage(page);
-
-  await login.goto();
-  await login.login('standard_user', 'secret_sauce');
 
   await inventory.addFirstItemToCart();
   await inventory.goToCart();

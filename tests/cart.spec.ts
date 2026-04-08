@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../fixtures/auth.fixture';
 import { LoginPage } from '../pages/LoginPage';
 import { InventoryPage } from '../pages/InventoryPage';
 
@@ -8,9 +8,7 @@ test.describe('Cart functionality', () => {
     const login = new LoginPage(page);
     const inventory = new InventoryPage(page);
 
-    await login.goto();
-    await login.login('standard_user', 'secret_sauce');
-
+ 
     await inventory.addFirstItemToCart();
     await inventory.addSecondItemToCart();
 
@@ -21,9 +19,6 @@ test.describe('Cart functionality', () => {
   test('remove item from cart', async ({ page }) => {
     const login = new LoginPage(page);
     const inventory = new InventoryPage(page);
-
-    await login.goto();
-    await login.login('standard_user', 'secret_sauce');
 
     await inventory.addFirstItemToCart();
     await inventory.removeFirstItem();

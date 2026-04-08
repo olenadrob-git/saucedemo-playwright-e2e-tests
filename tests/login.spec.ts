@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../fixtures/auth.fixture';
 import { LoginPage } from '../pages/LoginPage';
 
 const userName = 'standard_user'
@@ -6,8 +6,6 @@ const userName = 'standard_user'
 test('successful login', async ({ page }) => {
   const loginPage = new LoginPage(page);
 
-  await loginPage.goto();
-  await loginPage.login(userName, 'secret_sauce');
 
   await expect(page).toHaveURL(/inventory/);
 });
