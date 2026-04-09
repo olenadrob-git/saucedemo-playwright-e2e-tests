@@ -1,4 +1,5 @@
-import { test, expect } from '../fixtures/auth.fixture';
+//import { test, expect } from '../fixtures/auth.fixture';
+import { test, expect } from '@playwright/test';
 import { LoginPage } from '../pages/LoginPage';
 
 test('sort products by price low to high', async ({ page }) => {

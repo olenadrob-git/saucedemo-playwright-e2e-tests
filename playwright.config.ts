@@ -4,12 +4,24 @@ import { users } from './utils/testData';
 export default defineConfig({
   testDir: './tests',
 
-  projects: users.map(user => ({
-    name: user.username,
-    use: {
-      user: user as any,
+  projects: [
+    // project setup
+    {
+      name: 'setup',
+      testMatch: /auth\.setup\.ts/,
     },
-  })),
+
+    // Dinamic project for each user
+    ...users.map(user => ({
+      name: user.username,
+
+      use: {
+        storageState: `storage-${user.username}.json`,
+      },
+
+      dependencies: ['setup'],
+    })),
+  ],
 
   use: {
     headless: true,
@@ -17,5 +29,3 @@ export default defineConfig({
     video: 'retain-on-failure',
   },
 });
-
-
