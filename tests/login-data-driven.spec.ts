@@ -1,7 +1,6 @@
-//import { test, expect } from '../fixtures/auth.fixture';
 import { test, expect } from '@playwright/test';
-import { LoginPage } from '../pages/LoginPage';
 import { users } from '../utils/testData';
+import { LoginPage } from '../pages/LoginPage';
 
 test.describe('Login with different users', () => {
 
@@ -9,6 +8,7 @@ test.describe('Login with different users', () => {
 
     test(`login as ${user.username}`, async ({ page }) => {
       const login = new LoginPage(page);
+      await page.goto('https://www.saucedemo.com/inventory.html');
 
       await login.goto();
       await login.login(user.username, user.password);
